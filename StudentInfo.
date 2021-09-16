@@ -1,0 +1,70 @@
+'Store student information using dictionary in vb.net'
+
+
+Imports System
+Imports System.Collections
+Imports System.Collections.Generic
+
+Public Class Program
+    Public Shared Sub Main()
+        Dim students As Dictionary(Of Integer, Hashtable) = New Dictionary(Of Integer, Hashtable)() 'Dictionary to store all students
+        Dim numberOfStudents As Integer = 0
+        Console.WriteLine("Enter no. of Students:")
+        numberOfStudents = Convert.ToInt32(Console.ReadLine())
+
+        For i As Integer = 1 To numberOfStudents
+            Console.WriteLine(vbLf & "Enter Student " & i & " details:" & vbLf)
+            Dim studentDetailsHashTable As Hashtable = New Hashtable() 'Hashtable  to store all student details, details consists of different datatypes
+            Console.WriteLine("Enter Student " & i & " Name: ")
+            studentDetailsHashTable.Add(1, "Name= " & Console.ReadLine()) 'Key is 1 & value is Name
+            Console.WriteLine("Enter Student " & i & " Age: ")
+            studentDetailsHashTable.Add(2, "Age= " & Convert.ToInt32(Console.ReadLine())) 'Key is 2 & value is Age
+            Console.WriteLine("Enter Student " & i & " City: ")
+            studentDetailsHashTable.Add(3, "City=" & Console.ReadLine()) 'Key is 3 & value is City
+            students.Add(i, studentDetailsHashTable) 'Adding student details to the dictionary of student with key "i"
+        Next
+
+
+        ' Displaying the key/value
+        Console.WriteLine("-----------------------------------------------")
+        Console.WriteLine(vbLf & "The key/value pairs" & " in myDict are : ")
+
+        For Each student As KeyValuePair(Of Integer, Hashtable) In students
+            Console.WriteLine(vbLf & "Student Key = {0}", student.Key) 'key of each student
+            Console.WriteLine(vbLf & "Student details:")
+
+            For Each studentDetailsObject As DictionaryEntry In student.Value 'here student.Value is the Hashtable & each entry in Hashtable is of type DictionaryEntry
+                Console.WriteLine("Key: " & studentDetailsObject.Key & ", Value: " & studentDetailsObject.Value) 'key and value of each student details
+            Next
+
+            Console.WriteLine("-----------------------------------------------")
+        Next
+    End Sub
+End Class
+
+Public Class StudentDetails
+    Public Property Name() As String
+        Get
+
+        End Get
+        Set(ByVal value As String)
+
+        End Set
+    End Property
+    Public Property Age() As Integer
+        Get
+
+        End Get
+        Set(ByVal value As Integer)
+
+        End Set
+    End Property
+    Public Property Category() As String
+        Get
+
+        End Get
+        Set(ByVal value As String)
+
+        End Set
+    End Property
+End Class
